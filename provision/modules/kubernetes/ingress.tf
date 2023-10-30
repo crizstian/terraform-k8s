@@ -15,7 +15,7 @@ resource "helm_release" "release" {
   }
 }
 
-data "kubernetes_service" "nginx-ingress" {
+data "kubernetes_service" "nginx_ingress" {
   depends_on = [resource.helm_release.release]
   metadata {
     name = "nginx-ingress-ingress-nginx-controller"
