@@ -30,3 +30,11 @@ provider "kubernetes" {
   token                  = data.google_client_config.default.access_token
   alias                  = "gke"
 }
+provider "helm" {
+  kubernetes {
+    host                   = "https://${var.gke_endpoint}"
+    cluster_ca_certificate = base64decode(var.gke_cluster_ca_certificate)
+    token                  = data.google_client_config.default.access_token
+  }
+  alias = "gke"
+}
