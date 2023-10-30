@@ -18,7 +18,7 @@ resource "harness_platform_secret_text" "inline" {
   tags                      = var.tags
   secret_manager_identifier = "account.harnessSecretManager"
   value_type                = "Inline"
-  value                     = lookup(module.kubernetes.service_account_token.data, "token")
+  value                     = lookup(module.kubernets_harness.service_account_token.data, "token")
 }
 
 module "harness_connectors" {
