@@ -6,7 +6,9 @@ variable "gke_endpoint" {}
 variable "gke_cluster_ca_certificate" {}
 
 variable "harness_account_id" {}
-variable "harness_autostopping_token" {}
+variable "harness_autostopping_token" {
+  description = "ccm token"
+}
 
 variable "tags" {
   default = []
