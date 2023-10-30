@@ -6,6 +6,9 @@ resource "random_string" "suffix" {
 
 module "kubernets_harness" {
   source = "./modules/kubernetes"
+  providers = {
+    kubernetes = kubernetes.gke
+  }
 }
 
 resource "harness_platform_secret_text" "inline" {
