@@ -11,6 +11,9 @@ terraform {
     kubernetes = {
       source = "hashicorp/kubernetes"
     }
+    harness = {
+      source = "harness/harness"
+    }
   }
 }
 
