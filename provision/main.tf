@@ -36,4 +36,7 @@ module "harness_ccm" {
   harness_account_id         = var.harness_account_id
   harness_autostopping_token = var.harness_autostopping_token
   kubernetes_connector_id    = module.harness_connectors.all.kubernetes_connectors[var.gke_cluster_name].identifier
+  providers = {
+    kubernetes = kubernetes.gke
+  }
 }
