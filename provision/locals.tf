@@ -14,8 +14,6 @@ locals {
           service_account_token_ref = "${var.gke_cluster_name}_service_account_token"
         }
       }
-      username_password     = {}
-      inherit_from_delegate = {}
     }
   }
   kubernetes_ccm_connector = {
