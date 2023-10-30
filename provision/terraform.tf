@@ -30,6 +30,7 @@ provider "kubernetes" {
   token                  = data.google_client_config.default.access_token
   alias                  = "gke"
 }
+
 provider "helm" {
   kubernetes {
     host                   = "https://${var.gke_endpoint}"

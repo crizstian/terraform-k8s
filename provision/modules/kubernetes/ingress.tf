@@ -14,3 +14,10 @@ resource "helm_release" "release" {
     value = "true"
   }
 }
+
+data "kubernetes_service" "nginx-ingress" {
+  depends_on = [resource.helm_release.release]
+  metadata {
+    name = "nginx-ingress-ingress-nginx-controller"
+  }
+}
