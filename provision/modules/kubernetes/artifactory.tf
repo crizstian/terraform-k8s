@@ -5,7 +5,7 @@ resource "helm_release" "artifactory" {
   version    = "107.71.3"
   set {
     name  = "artifactory.nginx.enabled"
-    value = "false"
+    value = "true"
   }
 
   set {
