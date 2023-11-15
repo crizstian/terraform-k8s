@@ -8,7 +8,7 @@ module "kubernets_harness" {
   source = "./modules/kubernetes"
   providers = {
     kubernetes = kubernetes.gke
-    helm       = helm.gke
+    #helm       = helm.gke
   }
 }
 
