@@ -1,7 +1,7 @@
 locals {
 
   harness_platform_kubernetes_connectors = {
-    "${var.gke_cluster_name}" = {
+    "${var.cluster_name}" = {
       enable             = true
       description        = "terraform generated k8s connector"
       tags               = var.tags
@@ -10,14 +10,14 @@ locals {
       delegate_selectors = []
       service_account = {
         credentials = {
-          master_url                = "https://${var.gke_endpoint}"
-          service_account_token_ref = "account.${lower(replace("${var.gke_cluster_name}_service_account_token", "/[\\s-.]/", "_"))}"
+          master_url                = data.aws_eks_cluster.example.endpoint
+          service_account_token_ref = "account.${lower(replace("${var.cluster_name}_service_account_token", "/[\\s-.]/", "_"))}"
         }
       }
     }
   }
   kubernetes_ccm_connector = {
-    "${var.gke_cluster_name}" = {
+    "${var.cluster_name}" = {
       enable_ccm_connector = true
       description          = "terraform generated k8s connector"
       tags                 = var.tags
