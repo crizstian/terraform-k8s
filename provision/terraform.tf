@@ -1,12 +1,8 @@
 terraform {
-  backend "gcs" {
-    bucket = "crizstian-terraform"
-    prefix = "cristian-citibanamex-k8s"
-  }
 
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source = "hashicorp/aws"
     }
     kubernetes = {
       source = "hashicorp/kubernetes"
@@ -17,25 +13,28 @@ terraform {
   }
 }
 
-provider "google" {
-  project = var.gcp_project_id
-  region  = var.gcp_region
+provider "aws" {}
+
+data "aws_eks_cluster" "example" {
+  name = var.cluster_name
 }
 
-data "google_client_config" "default" {}
+data "aws_eks_cluster_auth" "example" {
+  name = var.cluster_name
+}
 
 provider "kubernetes" {
-  host                   = "https://${var.gke_endpoint}"
-  cluster_ca_certificate = base64decode(var.gke_cluster_ca_certificate)
-  token                  = data.google_client_config.default.access_token
-  alias                  = "gke"
+  host                   = data.aws_eks_cluster.example.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.example.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.example.token
+  alias                  = "aws"
 }
 
 provider "helm" {
   kubernetes {
-    host                   = "https://${var.gke_endpoint}"
-    cluster_ca_certificate = base64decode(var.gke_cluster_ca_certificate)
-    token                  = data.google_client_config.default.access_token
+    host                   = data.aws_eks_cluster.example.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.example.certificate_authority[0].data)
+    token                  = data.aws_eks_cluster_auth.example.token
   }
-  alias = "gke"
+  alias = "aws"
 }
