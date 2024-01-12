@@ -32,12 +32,12 @@ module "harness_connectors" {
   harness_platform_kubernetes_ccm_connectors = local.kubernetes_ccm_connector
 }
 
-module "harness_ccm" {
-  source                     = "git::https://github.com/crizstian/harness-terraform-modules.git//harness-ccm/kubernetes?ref=refactor"
-  harness_account_id         = var.harness_account_id
-  harness_autostopping_token = var.harness_autostopping_token
-  kubernetes_connector_id    = module.harness_connectors.all.kubernetes_connectors[var.cluster_name].identifier
-  providers = {
-    kubernetes = kubernetes.aws
-  }
-}
+#module "harness_ccm" {
+#  source                     = "git::https://github.com/crizstian/harness-terraform-modules.git//harness-ccm/kubernetes?ref=refactor"
+#  harness_account_id         = var.harness_account_id
+#  harness_autostopping_token = var.harness_autostopping_token
+#  kubernetes_connector_id    = module.harness_connectors.all.kubernetes_connectors[var.cluster_name].identifier
+#  providers = {
+#    kubernetes = kubernetes.aws
+#  }
+#}
