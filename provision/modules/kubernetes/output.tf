@@ -1,4 +1,4 @@
-output "service_account_token" {
+output "ksa" {
   value = kubernetes_secret_v1.sa
 }
 
