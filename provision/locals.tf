@@ -11,7 +11,7 @@ locals {
       service_account = {
         credentials = {
           master_url                = "https://${var.gke_endpoint}"
-          service_account_token_ref = "account.${lower(replace("${var.gke_cluster_name}_service_account_token", "/[\\s-.]/", "_"))}"
+          service_account_token_ref = "account.${lower(replace("${var.gke_cluster_name}_ksa", "/[\\s-.]/", "_"))}"
         }
       }
     }
