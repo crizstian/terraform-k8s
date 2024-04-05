@@ -1,4 +1,4 @@
-resource "helm_release" "prometheus" {
+resource "helm_release" "sonarqube" {
   name       = "prometheus"
   repository = "https://SonarSource.github.io/helm-chart-sonarqube"
   chart      = "sonarqube"
