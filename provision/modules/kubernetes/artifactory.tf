@@ -14,9 +14,3 @@ resource "helm_release" "artifactory" {
   }
 }
 
-data "kubernetes_service" "prometheus_ingress" {
-  depends_on = [resource.helm_release.prometheus]
-  metadata {
-    name = "nginx-ingress-ingress-nginx-controller"
-  }
-}
