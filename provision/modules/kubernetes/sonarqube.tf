@@ -1,5 +1,5 @@
 resource "helm_release" "sonarqube" {
-  name       = "prometheus"
+  name       = "sonarqube"
   repository = "https://SonarSource.github.io/helm-chart-sonarqube"
   chart      = "sonarqube"
   version    = "1.29"
