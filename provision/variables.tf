@@ -12,4 +12,5 @@ variable "harness_autostopping_token" {
 
 variable "tags" {
   default = []
+  description = "trigger demo"
 }
